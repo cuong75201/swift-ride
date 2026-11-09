@@ -16,6 +16,7 @@ using Trip_Service.Infrastructure.Persistence.Impl;
 using Trip_Service.Infrastructure.Persistence.Repositories;
 using Trip_Service.Infrastructure.RabbitMQ.Consumer;
 
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
@@ -88,7 +89,7 @@ builder.Services.AddScoped<IMatchingPricingService>(serviceProvider =>
 builder.Services.AddScoped<IPaymentService>(serviceProvider =>
     serviceProvider.GetRequiredService<PaymentService>());
 
-// Default service 
+//   Default service 
 builder.Services.AddScoped<IJwtService, JwtService>();
 builder.Services.AddScoped<IPasswordService, PasswordService>();
 builder.Services.AddScoped<IAuthService, AuthService>();
@@ -96,13 +97,13 @@ builder.Services.AddSingleton<ISendNotificateService, SendNotificateService>();
 // Application service
 builder.Services.AddScoped<ITripService, global::Trip_Service.Application.Services.TripService>();
 
-// Application Repository
+  // Application Repository
 builder.Services.AddScoped<IAccountRepository, AccountRepository>();
 builder.Services.AddScoped<IDriverRepository, DriverRepository>();
 builder.Services.AddScoped<ITripRepository, TripRepository>();
 builder.Services.AddScoped<ITripDriverRejectionRepository, TripDriverRejectionRepository>();
 
-
+// 
 var app = builder.Build();
 
 if (builder.Configuration.GetValue<bool>("Database:ApplyMigrations"))
@@ -114,12 +115,17 @@ if (builder.Configuration.GetValue<bool>("Database:ApplyMigrations"))
         .MigrateAsync();
 }
 
+
+
 app.UseExceptionHandler();
 
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
 }
+
+
+
 
 app.UseHttpsRedirection();
 
