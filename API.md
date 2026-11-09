@@ -89,6 +89,8 @@ Base URL qua Gateway: `http://localhost:8000/pm`
 
 ## 4. Endpoint kỹ thuật của API Gateway
 
+
+
 | Method | Endpoint | Ý nghĩa |
 |---|---|---|
 | `GET` | `http://localhost:8000/` | Kiểm tra Gateway đang hoạt động; trả về `Hello World!`. |
